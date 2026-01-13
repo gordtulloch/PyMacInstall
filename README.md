@@ -16,7 +16,10 @@ A .NET MAUI application for macOS that automates the installation of Python, clo
 ## Requirements
 
 - macOS 14.0 (Sonoma) or later
-- .NET 8.0 SDK or later ([Download here](https://dotnet.microsoft.com/download/dotnet/8.0))
+- **Xcode** (full version, not just Command Line Tools) - Required for Mac Catalyst builds
+  - Download from Mac App Store or [Apple Developer](https://developer.apple.com/xcode/)
+  - ~10-15GB download, ~30GB installed
+- .NET 9.0 SDK or later ([Download here](https://dotnet.microsoft.com/download/dotnet/9.0))
 - Git (usually pre-installed on macOS, or install via Xcode Command Line Tools)
 - Homebrew (optional but recommended for Python installation)
 
@@ -24,7 +27,17 @@ A .NET MAUI application for macOS that automates the installation of Python, clo
 
 ### Prerequisites
 
-1. **Install .NET 8.0 SDK**:
+1. **Install Xcode** (REQUIRED for building):
+   - Open the Mac App Store
+   - Search for "Xcode"
+   - Click "Get" or "Install" (this will take a while - it's ~15GB)
+   - After installation, open Xcode once to accept the license
+   - Set Xcode path:
+     ```bash
+     sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+     ```
+
+2. **Install .NET 9.0 SDK**:
    ```bash
    # Download from Microsoft or use Homebrew
    brew install dotnet-sdk
@@ -33,12 +46,17 @@ A .NET MAUI application for macOS that automates the installation of Python, clo
    dotnet --version
    ```
 
-2. **Install Git** (if not already installed):
+3. **Install .NET MAUI workloads**:
+   ```bash
+   sudo dotnet workload install maui-maccatalyst
+   ```
+
+4. **Install Git** (if not already installed):
    ```bash
    xcode-select --install
    ```
 
-3. **Install Homebrew** (recommended for Python installation):
+5. **Install Homebrew** (recommended for Python installation):
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
