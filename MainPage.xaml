@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PyMacInstall.MainPage"
+             Title="PyMacInstall">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            
+            <Label Text="PyMacInstall - Python Environment Setup for Mac"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- Python Installation Section -->
+            <Frame BorderColor="Gray" Padding="10" Margin="0,10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="1. Python Installation" FontSize="18" FontAttributes="Bold"/>
+                    
+                    <CheckBox x:Name="PythonAlreadyInstalledCheckBox"
+                              IsChecked="True"
+                              CheckedChanged="PythonAlreadyInstalledCheckBox_CheckedChanged"/>
+                    <Label Text="Python already installed (skip installation)"/>
+                    
+                    <VerticalStackLayout x:Name="PythonInstallSection" Spacing="10">
+                        <Label Text="Python Version:"/>
+                        <Picker x:Name="PythonVersionPicker"
+                                Title="Select Version"
+                                SelectedIndexChanged="PythonVersionPicker_SelectedIndexChanged">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>3.12.6</x:String>
+                                    <x:String>3.12.5</x:String>
+                                    <x:String>3.11.9</x:String>
+                                    <x:String>3.10.14</x:String>
+                                    <x:String>3.9.19</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        
+                        <Label Text="Installation Path:"/>
+                        <Entry x:Name="PythonPathEntry"
+                               Text="/usr/local/python3"
+                               TextChanged="PythonPathEntry_TextChanged"/>
+                        
+                        <Button Text="Install Python"
+                                x:Name="InstallPythonButton"
+                                Clicked="InstallPythonButton_Clicked"
+                                BackgroundColor="#4A90E2"
+                                TextColor="White"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Git Repository Section -->
+            <Frame BorderColor="Gray" Padding="10" Margin="0,10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="2. Clone Git Repository" FontSize="18" FontAttributes="Bold"/>
+                    
+                    <Label Text="Repository URL:"/>
+                    <Entry x:Name="RepoUrlEntry"
+                           Placeholder="https://github.com/user/repo.git"
+                           TextChanged="RepoUrlEntry_TextChanged"/>
+                    
+                    <Label Text="Clone to Directory:"/>
+                    <Entry x:Name="ClonePathEntry"
+                           Placeholder="~/Projects/"
+                           TextChanged="ClonePathEntry_TextChanged"/>
+                    
+                    <Button Text="Clone Repository"
+                            Clicked="CloneRepoButton_Clicked"
+                            BackgroundColor="#4A90E2"
+                            TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Python Environment Setup Section -->
+            <Frame BorderColor="Gray" Padding="10" Margin="0,10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="3. Setup Python Environment" FontSize="18" FontAttributes="Bold"/>
+                    
+                    <CheckBox x:Name="CreateVenvCheckBox" IsChecked="True"/>
+                    <Label Text="Create Virtual Environment"/>
+                    
+                    <CheckBox x:Name="InstallPackagesCheckBox" IsChecked="True"/>
+                    <Label Text="Install Python Packages"/>
+                    
+                    <Label Text="Target Program:"/>
+                    <Entry x:Name="TargetProgramEntry"
+                           Placeholder="main.py"
+                           TextChanged="TargetProgramEntry_TextChanged"/>
+                    
+                    <CheckBox x:Name="CreateDesktopShortcutCheckBox" IsChecked="False"/>
+                    <Label Text="Create Application Launcher"/>
+                    
+                    <Button Text="Setup Environment"
+                            Clicked="SetupEnvironmentButton_Clicked"
+                            BackgroundColor="#4A90E2"
+                            TextColor="White"/>
+                    
+                    <Button Text="Create Run Scripts"
+                            Clicked="CreateRunScriptsButton_Clicked"
+                            BackgroundColor="#7B68EE"
+                            TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Complete Setup Button -->
+            <Button Text="Complete Setup (All Steps)"
+                    Clicked="InstallAllButton_Clicked"
+                    BackgroundColor="#2ECC71"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    Margin="0,10"/>
+
+            <!-- Progress Bar -->
+            <ProgressBar x:Name="ProgressBar"
+                         Progress="0"
+                         IsVisible="False"
+                         Margin="0,10"/>
+
+            <!-- Output Log -->
+            <Frame BorderColor="Gray" Padding="10" Margin="0,10">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Output Log:" FontAttributes="Bold"/>
+                    <Editor x:Name="OutputEditor"
+                            IsReadOnly="True"
+                            HeightRequest="300"
+                            FontSize="12"
+                            FontFamily="Courier"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
