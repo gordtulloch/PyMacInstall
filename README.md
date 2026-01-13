@@ -1,0 +1,1 @@
+Mac version of PyWinInstallgit config --global user.name "cameronmcnz"
